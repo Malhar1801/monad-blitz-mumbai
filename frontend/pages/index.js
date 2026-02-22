@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
+import axios from "axios";
 import Navbar from "../components/navbar";
-import { getContract, getProvider } from "../utils/contract";
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../utils/contract";
 
 const CATEGORIES = ["All", "ChatGPT", "Coding", "Design", "Marketing", "Other"];
 
@@ -18,47 +19,98 @@ export default function Marketplace() {
     await provider.send("eth_requestAccounts", []);
     const addr = await provider.getSigner().getAddress();
     setAccount(addr);
-    loadPrompts();
   };
+
+  // Runs when account is set
+  useEffect(() => {
+    if (account) loadPrompts();
+  }, [account]);
 
   const loadPrompts = async () => {
     setLoading(true);
     try {
-      const contract = await getContract();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
+
+      console.log("Fetching from contract:", CONTRACT_ADDRESS);
       const ids = await contract.getAllPrompts();
+      console.log("IDs found:", ids.length);
+
+      if (ids.length === 0) {
+        setLoading(false);
+        return;
+      }
+
       const list = await Promise.all(ids.map(async (id) => {
-        const d = await contract.getPromptDetails(id);
-        const owner = await contract.ownerOf(id);
-        return {
-          tokenId: id.toString(),
-          price: ethers.utils.formatEther(d.price),
-          creator: d.creator,
-          active: d.active,
-          category: d.category,
-          avgRating: d.avgRating.toString(),
-          owner,
-        };
+        try {
+          const d = await contract.getPromptDetails(id);
+          const rawPrompt = await contract.prompts(id);
+          const ipfsHash = rawPrompt.ipfsHash;
+          console.log("Token", id.toString(), "ipfsHash:", ipfsHash);
+
+          let title = "Untitled Prompt";
+          let description = "";
+          try {
+            const res = await axios.get(
+              `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
+              { timeout: 8000 }
+            );
+            console.log("IPFS response:", res.data);
+            title = res.data.title || "Untitled Prompt";
+            description = res.data.prompt
+              ? res.data.prompt.slice(0, 80) + "..."
+              : "";
+          } catch (e) {
+            console.log("IPFS failed:", e.message);
+          }
+
+          return {
+            tokenId: id.toString(),
+            price: ethers.utils.formatEther(d.price),
+            creator: d.creator,
+            active: d.active,
+            category: d.category,
+            avgRating: d.avgRating.toString(),
+            ipfsHash,
+            title,
+            description,
+          };
+        } catch (e) {
+          console.log("Error on token", id.toString(), e.message);
+          return null;
+        }
       }));
-      setPrompts(list.filter(p => p.active));
-    } catch (err) { console.error(err); }
+
+      const active = list.filter(p => p && p.active);
+      console.log("Active prompts:", active.length);
+      setPrompts(active);
+    } catch (err) {
+      console.error("loadPrompts error:", err);
+    }
     setLoading(false);
   };
 
   const buy = async (tokenId, price) => {
     try {
       setBuying(tokenId);
-      const contract = await getContract(true);
-      const tx = await contract.buyPrompt(tokenId, { value: ethers.utils.parseEther(price) });
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+      const tx = await contract.buyPrompt(tokenId, {
+        value: ethers.utils.parseEther(price),
+      });
       await tx.wait();
       alert("🎉 Purchased! Go to My Prompts to reveal.");
       loadPrompts();
-    } catch (err) { alert("Error: " + (err.reason || err.message)); }
+    } catch (err) {
+      alert("Error: " + (err.reason || err.message));
+    }
     setBuying(null);
   };
 
-  const filtered = filter === "All" ? prompts : prompts.filter(p => p.category === filter);
+  const filtered =
+    filter === "All" ? prompts : prompts.filter(p => p.category === filter);
 
-  // Show connect wallet screen if not connected
   if (!account) {
     return (
       <div className="min-h-screen bg-gray-950 text-white">
@@ -89,7 +141,11 @@ export default function Marketplace() {
         <div className="flex gap-2 mb-8 flex-wrap">
           {CATEGORIES.map(cat => (
             <button key={cat} onClick={() => setFilter(cat)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${filter === cat ? "bg-purple-600 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
+                filter === cat
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+              }`}>
               {cat}
             </button>
           ))}
@@ -98,7 +154,7 @@ export default function Marketplace() {
         {loading ? (
           <div className="flex items-center gap-3 text-gray-400">
             <div className="w-5 h-5 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-            Loading prompts...
+            Loading prompts from chain + IPFS...
           </div>
         ) : filtered.length === 0 ? (
           <p className="text-gray-400">No prompts yet. Be the first to create one!</p>
@@ -110,16 +166,25 @@ export default function Marketplace() {
                   <span className="bg-purple-900 text-purple-300 text-xs px-2 py-1 rounded">#{p.tokenId}</span>
                   <span className="bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded">{p.category}</span>
                 </div>
+                <h3 className="text-white font-semibold text-lg leading-tight">{p.title}</h3>
+                {p.description && (
+                  <p className="text-gray-400 text-sm leading-relaxed">{p.description}</p>
+                )}
                 <div>
                   <p className="text-gray-500 text-xs">Creator</p>
-                  <p className="text-sm font-mono">{p.creator.slice(0,6)}...{p.creator.slice(-4)}</p>
+                  <p className="text-sm font-mono text-gray-300">
+                    {p.creator.slice(0, 6)}...{p.creator.slice(-4)}
+                  </p>
                 </div>
                 <div className="flex justify-between items-center">
                   <p className="text-2xl font-bold text-purple-400">{p.price} MON</p>
                   <p className="text-yellow-400 text-sm">⭐ {p.avgRating}/5</p>
                 </div>
-                <button onClick={() => buy(p.tokenId, p.price)} disabled={buying === p.tokenId}
-                  className="w-full bg-purple-600 hover:bg-purple-500 disabled:bg-gray-700 disabled:cursor-not-allowed py-2.5 rounded-lg font-semibold text-sm transition">
+                <button
+                  onClick={() => buy(p.tokenId, p.price)}
+                  disabled={buying === p.tokenId}
+                  className="w-full bg-purple-600 hover:bg-purple-500 disabled:bg-gray-700 disabled:cursor-not-allowed py-2.5 rounded-lg font-semibold text-sm transition"
+                >
                   {buying === p.tokenId ? "Processing..." : "Buy & Unlock ⚡"}
                 </button>
               </div>

@@ -9,7 +9,8 @@ export const CONTRACT_ABI = [
   "function getAllPrompts() external view returns (uint256[] memory)",
   "function getPromptDetails(uint256 tokenId) external view returns (uint256 price, address creator, bool active, string memory category, uint256 avgRating)",
   "function ratePrompt(uint256 tokenId, uint256 rating) external",
-  "function ownerOf(uint256 tokenId) public view returns (address)"
+  "function ownerOf(uint256 tokenId) public view returns (address)",
+  "function prompts(uint256) public view returns (string ipfsHash, uint256 price, address creator, bool active, string category, uint256 totalRating, uint256 ratingCount)"
 ];
 
 export const getProvider = () => {
