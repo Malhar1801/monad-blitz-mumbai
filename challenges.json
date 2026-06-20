@@ -1,0 +1,212 @@
+[
+  {
+    "challengeId": 0,
+    "problemStatement": "Write a prompt that generates complete, production-ready REST API documentation (OpenAPI 3.0 format) for any given endpoint — including path parameters, request body schema, response codes, authentication headers, and usage examples.",
+    "category": "Technical Writing",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 1,
+    "problemStatement": "Create a prompt that performs a systematic multi-layer code review — checking for logic errors, security vulnerabilities (injection, XSS, CSRF), performance bottlenecks, code style violations, and missing edge case handling — and produces a structured report with severity ratings.",
+    "category": "Code Review",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 2,
+    "problemStatement": "Design a prompt that converts plain-English business requirements into optimized, production-safe SQL queries — handling JOINs, subqueries, aggregations, window functions, and query performance hints — and explains the logic step by step.",
+    "category": "Code Generation",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 3,
+    "problemStatement": "Build a prompt that generates a comprehensive unit test suite for any given function or class — covering happy paths, edge cases, boundary values, null/undefined inputs, type mismatches, and async error scenarios — using the test framework of the user's choice.",
+    "category": "Testing",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 4,
+    "problemStatement": "Write a prompt that acts as a senior debugging assistant — it asks targeted diagnostic questions in a structured sequence (reproduce → isolate → hypothesize → test → fix) and guides the developer toward the root cause without giving away the answer immediately.",
+    "category": "Debugging",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 5,
+    "problemStatement": "Create a prompt that produces high-converting marketing copy for any product — including headline variants (A/B testable), value proposition, feature-to-benefit translation, objection handling, and a strong CTA — tailored to a specific target audience and platform (email, landing page, ad).",
+    "category": "Marketing",
+    "difficulty": "Beginner",
+    "isActive": true
+  },
+  {
+    "challengeId": 6,
+    "problemStatement": "Design a prompt that transforms any academic research paper (provided as abstract + key sections) into a structured executive brief — covering the problem, methodology, findings, limitations, and business implications — in under 500 words, at a non-specialist reading level.",
+    "category": "Summarization",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 7,
+    "problemStatement": "Write a prompt that generates a full Product Requirements Document (PRD) from a single sentence idea — including problem statement, user personas, success metrics (KPIs), functional requirements, non-functional requirements, out-of-scope items, and open questions.",
+    "category": "Product Writing",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 8,
+    "problemStatement": "Create a prompt that performs exploratory data analysis (EDA) on any described dataset — suggesting appropriate visualizations, identifying potential data quality issues, recommending statistical tests, and outputting a step-by-step analysis plan a data scientist can execute.",
+    "category": "Data Analysis",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 9,
+    "problemStatement": "Build a prompt that designs a scalable system architecture for any described application — covering data flow, service boundaries, database selection rationale, caching strategy, message queues, failure modes, and a deployment diagram described in structured text.",
+    "category": "System Design",
+    "difficulty": "Expert",
+    "isActive": true
+  },
+  {
+    "challengeId": 10,
+    "problemStatement": "Write a prompt that acts as a Socratic tutor — it teaches any concept by asking progressively deeper questions rather than explaining directly, adapts to the learner's responses, identifies misconceptions, and only reveals answers when the learner is genuinely stuck.",
+    "category": "Education",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 11,
+    "problemStatement": "Design a prompt that generates a complete competitive analysis report for any product — covering at least 5 competitors across pricing, features, positioning, strengths/weaknesses, target audience, and a 2x2 positioning matrix description.",
+    "category": "Business Strategy",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 12,
+    "problemStatement": "Create a prompt that refactors any given code snippet into clean, idiomatic code — applying SOLID principles, appropriate design patterns, reducing cyclomatic complexity, improving naming clarity, and adding inline documentation — without changing external behavior.",
+    "category": "Code Refactoring",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 13,
+    "problemStatement": "Write a prompt that generates a realistic, structured interview script for any job role — including 5 behavioral questions (STAR format), 5 technical questions with expected answer rubrics, 3 culture-fit questions, and a scoring matrix the interviewer can use.",
+    "category": "HR & Recruiting",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 14,
+    "problemStatement": "Build a prompt that performs a full SEO audit on any described web page — assessing title tag, meta description, heading structure, keyword density, internal linking, page speed considerations, schema markup recommendations, and a prioritized fix checklist.",
+    "category": "SEO",
+    "difficulty": "Beginner",
+    "isActive": true
+  },
+  {
+    "challengeId": 15,
+    "problemStatement": "Design a prompt that generates a complete onboarding email sequence (5 emails) for any SaaS product — each with a subject line, preview text, body copy, CTA, and send timing rationale — progressively leading the user from signup to activation to habit formation.",
+    "category": "Email Marketing",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 16,
+    "problemStatement": "Create a prompt that acts as a financial modeling assistant — it takes any described business scenario and produces a structured 3-statement financial model outline (P&L, Balance Sheet, Cash Flow) with key assumptions, driver list, and sensitivity analysis framework.",
+    "category": "Finance",
+    "difficulty": "Expert",
+    "isActive": true
+  },
+  {
+    "challengeId": 17,
+    "problemStatement": "Write a prompt that generates a complete LangChain agent design — specifying the agent type, tool list with descriptions, memory strategy, prompt template for the agent brain, error handling approach, and a sample multi-turn conversation trace.",
+    "category": "AI Agent Design",
+    "difficulty": "Expert",
+    "isActive": true
+  },
+  {
+    "challengeId": 18,
+    "problemStatement": "Build a prompt that generates a detailed technical incident post-mortem — structured with timeline of events, root cause analysis (5 Whys), contributing factors, customer impact assessment, immediate fixes applied, and a prevention roadmap with owners and deadlines.",
+    "category": "DevOps",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 19,
+    "problemStatement": "Design a prompt that creates a complete UX research plan for any product feature — including research questions, recommended methods (user interviews, usability tests, surveys), participant screening criteria, discussion guide, and a synthesis framework for findings.",
+    "category": "UX Research",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 20,
+    "problemStatement": "Write a prompt that converts any legal document (contract clause, terms of service, privacy policy) into plain English — preserving legal accuracy while using simple vocabulary, flagging any clauses the reader should be cautious about, and summarizing the key obligations of each party.",
+    "category": "Legal",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 21,
+    "problemStatement": "Create a prompt that generates a complete cold outreach sequence for B2B sales — including a LinkedIn connection note, 3 follow-up emails spaced over 2 weeks, a final breakup email — personalized to the prospect's role, company size, and identified pain point.",
+    "category": "Sales",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 22,
+    "problemStatement": "Design a prompt that performs adversarial testing on any AI prompt — it tries to break the prompt through jailbreaking, prompt injection, role confusion, context overflow, and out-of-distribution inputs — and reports discovered vulnerabilities with recommended hardening patches.",
+    "category": "Prompt Security",
+    "difficulty": "Expert",
+    "isActive": true
+  },
+  {
+    "challengeId": 23,
+    "problemStatement": "Build a prompt that generates a full changelog and release notes document for any software version — given a list of raw commits or PR titles — properly categorizing changes into Features, Bug Fixes, Breaking Changes, Deprecations, and Performance Improvements.",
+    "category": "Developer Tools",
+    "difficulty": "Beginner",
+    "isActive": true
+  },
+  {
+    "challengeId": 24,
+    "problemStatement": "Write a prompt that acts as a startup pitch coach — it evaluates any pitch deck outline and provides structured feedback on narrative flow, problem clarity, market size credibility, solution differentiation, business model viability, team slide, and traction evidence.",
+    "category": "Entrepreneurship",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 25,
+    "problemStatement": "Create a prompt that generates a complete multi-chapter technical tutorial for any programming concept or library — with learning objectives, prerequisite check, concept explanation, worked examples with increasing complexity, common mistakes section, and a capstone exercise.",
+    "category": "Education",
+    "difficulty": "Advanced",
+    "isActive": true
+  },
+  {
+    "challengeId": 26,
+    "problemStatement": "Design a prompt that performs a thorough dependency audit for any described software project — identifying outdated packages, known CVEs, license compatibility issues, redundant dependencies, and producing a prioritized upgrade plan with migration risk ratings.",
+    "category": "DevOps",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 27,
+    "problemStatement": "Write a prompt that generates a complete localization guide for any product being expanded to a new market — covering language adaptation, cultural nuance in UI copy, date/number/currency format adjustments, legal compliance notes, and a QA checklist for the localization team.",
+    "category": "Localization",
+    "difficulty": "Intermediate",
+    "isActive": true
+  },
+  {
+    "challengeId": 28,
+    "problemStatement": "Build a prompt that designs a complete prompt chaining pipeline for any multi-step AI task — specifying each step's input/output schema, the model and temperature for each step, error handling between steps, and a worked trace of the full pipeline on a sample input.",
+    "category": "Prompt Engineering",
+    "difficulty": "Expert",
+    "isActive": true
+  },
+  {
+    "challengeId": 29,
+    "problemStatement": "Create a prompt that generates a complete brand voice guide for any company — defining the brand personality, tone spectrum (formal ↔ casual, serious ↔ playful), vocabulary to use/avoid, example rewrites of generic copy, and guidelines for different content channels.",
+    "category": "Brand Strategy",
+    "difficulty": "Intermediate",
+    "isActive": true
+  }
+]

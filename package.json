@@ -1,0 +1,31 @@
+{
+  "name": "promptfi",
+  "version": "1.0.0",
+  "description": "PromptFi — Prompt Engineering Marketplace on Monad Testnet",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "compile": "npx hardhat compile",
+    "preflight": "node scripts/preflight.js",
+    "deploy": "npx hardhat run scripts/deploy.js --network monad",
+    "seed:marketplace": "node scripts/seedMarketplace.js",
+    "seed:challenges": "node scripts/seedChallenges.js",
+    "set:expert": "node scripts/setExpert.js",
+    "test": "npx hardhat test"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@openzeppelin/contracts": "^5.1.0",
+    "@pinata/sdk": "^2.1.0",
+    "@xenova/transformers": "^2.17.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.4",
+    "express": "^4.21.1",
+    "mongoose": "^8.9.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.17"
+  }
+}
