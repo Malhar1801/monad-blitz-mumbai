@@ -4,3 +4,4 @@ config/addresses.json
 artifacts/
 cache/
 .model-cache/
+.env
